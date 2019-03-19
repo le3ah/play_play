@@ -17,10 +17,19 @@ exports.up = function(knex, Promise) {
       table.integer('playlist_id').unsigned().references('playlists.id');
     }),
 
+    knex.schema.createTable('playlists', function(table) {
+      table.increments('id').primary();
+      table.string('name');
 
+      table.timestamps(true, true);
+    })
   ])
 };
 
 exports.down = function(knex, Promise) {
-
+  return Promise.all ([
+    knex.schema.dropTable('playlists_favorites'),
+    knex.schema.dropTable('favorites'),
+    knex.schema.dropTable('playlists')
+  ])
 };
