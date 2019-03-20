@@ -1,16 +1,34 @@
 
 exports.seed = function(knex, Promise) {
-  // Deletes ALL existing entries
-  return knex('favorites')
-      // Inserts seed entries
+  return knex('playlists_favorites')
+  .then(() => knex('playlists'))
+  .then(() => knex('favorites'))
     .then(() => {
       return Promise.all([
-        knex('favorites').insert({
+        knex('favorites').insert([{
           name: 'Crazy',
           artist_name: 'Patsy Cline',
           genre: 'Country',
           rating: 98
-        }, 'id')
+        }, {
+          name: 'Soy Anormal',
+          artist_name: 'Residente',
+          genre: 'Rap',
+          rating: 100
+        }
+      ], 'id')
+        .then((favorites) => {
+          return knex('playlists').insert([
+            { name: 'Cleaning House' },
+            { name: 'Party Time' }
+          ], 'id')
+          .then((playlists) => {
+            return knex('playlists_favorites').insert([
+              { playlist_id: playlists[0], favorite_id: favorites[0]},
+              { playlist_id: playlists[1], favorite_id: favorites[0]}
+            ])
+          })
+        })
         .then(() => console.log('Seeding complete!'))
         .catch(error => console.log(`Error seeding data: ${error}`))
       ])
