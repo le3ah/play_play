@@ -52,6 +52,14 @@ describe('Favorite Routes', () => {
       done();
     })
   })
+  it('should return a 404 for a route that does not exist', done => {
+  chai.request(server)
+    .get('/sad')
+    .end((err, response) => {
+      response.should.have.status(404);
+      done();
+    });
+  });
 });
 describe('POST /api/v1/favorites', () => {
   it('should create a new favorite', done => {
@@ -67,6 +75,17 @@ describe('POST /api/v1/favorites', () => {
       response.should.have.status(201);
       response.body.should.be.a('object');
       response.body.should.have.property('id');
+      done();
+    })
+  })
+  it ('should return 400-block status code for unsuccessful favorite', done => {
+    chai.request(server)
+    .post('/api/v1/favorites')
+    .send({
+      name: 'Different'
+    })
+    .end((err, response) => {
+      response.should.have.status(422);
       done();
     })
   })
