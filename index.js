@@ -10,3 +10,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('port', process.env.PORT || 3000);
 app.locals.title = 'Songs';
+
+
+
+module.exports = {
+  app: app,
+  database: database
+}
