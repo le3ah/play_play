@@ -2,7 +2,7 @@
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('playlists').del()
+  return knex('playlists')
       // Inserts seed entries
     .then(() => {
       return Promise.all([

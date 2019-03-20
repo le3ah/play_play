@@ -25,6 +25,31 @@ app.get('/api/v1/favorites', (request, response) => {
     });
 });
 
+app.post('/api/v1/favorites', (request, response) => {
+  const favorite = request.body;
+  for (let requiredParameter of ['name', 'artist_name', 'genre', 'rating']) {
+    if (!favorite[requiredParameter]) {
+      return response
+      .status(422)
+      .send({ error: `Expected format: { name: <String>, artist_name: <String>, genre: <String>, rating: <Integer> }. You're missing a "${requiredParameter}" property.`});
+    }
+  }
+
+  database('favorites').insert(favorite, ['id', 'name', 'artist_name', 'genre', 'rating'])
+    .then(favorite => {
+      response.status(201).json({
+        id: favorite[0].id,
+        name: favorite[0].name,
+        artist_name: favorite[0].artist_name,
+        genre: favorite[0].genre,
+        rating: favorite[0].rating
+      })
+    })
+    .catch(error => {
+      response.status(500).json({ error });
+    });
+});
+
 module.exports = {
   app: app,
   database: database
