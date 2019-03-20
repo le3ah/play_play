@@ -35,9 +35,15 @@ app.post('/api/v1/favorites', (request, response) => {
     }
   }
 
-  database('favorites').insert(favorite, 'id')
+  database('favorites').insert(favorite, ['id', 'name', 'artist_name', 'genre', 'rating'])
     .then(favorite => {
-      response.status(201).json({ id: favorite[0] })
+      response.status(201).json({
+        id: favorite[0].id,
+        name: favorite[0].name,
+        artist_name: favorite[0].artist_name,
+        genre: favorite[0].genre,
+        rating: favorite[0].rating
+      })
     })
     .catch(error => {
       response.status(500).json({ error });
