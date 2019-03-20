@@ -11,6 +11,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('port', process.env.PORT || 3000);
 app.locals.title = 'Songs';
 
+app.listen(app.get('port'), () => {
+  console.log(`${app.locals.title} is running on ${app.get('port')}.`);
+});
+
 app.get('/api/v1/favorites', (request, response) => {
   database('favorites').select()
     .then((favorites) => {
