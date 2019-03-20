@@ -41,6 +41,7 @@ describe('Favorite Routes', () => {
       response.should.be.json;
       response.body.should.be.a('array');
       response.body.length.should.equal(2);
+      response.body[0].should.have.property('id');
       response.body[0].should.have.property('name');
       response.body[0].name.should.equal('Crazy');
       response.body[0].should.have.property('artist_name');
@@ -60,6 +61,18 @@ describe('Favorite Routes', () => {
       done();
     });
   });
+  it('should return a particular favorite by id', done => {
+    // const favorite = database('favorites').first();
+    // var id = favorite.id
+    chai.request(server)
+    .get('/api/v1/favorites/2')
+    .end((err, response) => {
+      response.should.have.status(200);
+      response.should.be.json;
+      response.body.should.be.a('array');
+      done();
+    })
+  })
 });
 describe('POST /api/v1/favorites', () => {
   it('should create a new favorite', done => {
