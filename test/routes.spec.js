@@ -115,4 +115,12 @@ describe('DELETE /api/v1/favorites/:id', () => {
       done();
     })
   })
+  it ('should return 404 status code for unsuccessful favorite', done => {
+    chai.request(server)
+    .delete('/api/v1/favorites/368')
+    .end((err, response) => {
+      response.should.have.status(404);
+      done();
+    })
+  })
 });
