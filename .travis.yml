@@ -8,8 +8,8 @@ services:
 
 before_script:
   - psql -c 'create database songs;' -U postgres
+  run: "knex migrate:latest"
 
 deploy:
   provider: heroku
   app: play_play
-  run: "knex migrate:latest"
