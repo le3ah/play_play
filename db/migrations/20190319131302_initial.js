@@ -13,8 +13,8 @@ exports.up = function(knex, Promise) {
 
     knex.schema.createTable('playlists_favorites', function(table) {
       table.increments('id').primary();
-      table.integer('favorite_id').unsigned().references('favorites.id');
-      table.integer('playlist_id').unsigned().references('playlists.id');
+      table.integer('favorite_id').unsigned().references('favorites.id').onDelete('CASCADE');
+      table.integer('playlist_id').unsigned().references('playlists.id').onDelete('CASCADE');
     }),
 
     knex.schema.createTable('playlists', function(table) {
