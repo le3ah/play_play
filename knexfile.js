@@ -41,7 +41,7 @@ module.exports = {
     migrations: {
       directory: './db/migrations'
     }
-    userNullAsDefault: true
+    useNullAsDefault: true
   }
 
 };
