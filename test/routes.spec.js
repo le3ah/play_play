@@ -8,7 +8,7 @@ const database = require('../index').database;
 
 chai.use(chaiHttp);
 
-describe('Favorite Routes', () => {
+describe('Favorite GET Routes', () => {
   before((done) => {
     database.raw("TRUNCATE playlists_favorites restart identity;")
     .then(() => database.raw("TRUNCATE playlists restart identity CASCADE;"))
@@ -62,8 +62,6 @@ describe('Favorite Routes', () => {
     });
   });
   it('should return a particular favorite by id', done => {
-    // const favorite = database('favorites').first();
-    // var id = favorite.id
     chai.request(server)
     .get('/api/v1/favorites/2')
     .end((err, response) => {
@@ -103,6 +101,25 @@ describe('POST /api/v1/favorites', () => {
     })
     .end((err, response) => {
       response.should.have.status(422);
+      done();
+    })
+  })
+});
+
+describe('DELETE /api/v1/favorites/:id', () => {
+  it('should remove a favorite', done => {
+    chai.request(server)
+    .delete('/api/v1/favorites/2')
+    .end((err, response) => {
+      response.should.have.status(204);
+      done();
+    })
+  })
+  it ('should return 404 status code for unsuccessful favorite', done => {
+    chai.request(server)
+    .delete('/api/v1/favorites/368')
+    .end((err, response) => {
+      response.should.have.status(404);
       done();
     })
   })
