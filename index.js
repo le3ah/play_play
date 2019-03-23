@@ -1,4 +1,6 @@
 const express = require('express');
+const favicon = require('serve-favicon');
+const path = require('path');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -8,6 +10,7 @@ const configuration = require('./knexfile')[environment]
 const database = require('knex')(configuration);
 
 app.use(cors());
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('port', process.env.PORT || 3000);
