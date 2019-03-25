@@ -149,7 +149,7 @@ describe('Playlist GET Routes', () => {
          throw error;
        });
    });
-  it('should return all playlists', done => {
+  it('should return all playlists with associated favorites', done => {
     chai.request(server)
     .get('/api/v1/playlists')
     .end((err, response) => {
@@ -162,4 +162,12 @@ describe('Playlist GET Routes', () => {
       done();
     })
   })
+  it('should return a 404 for a route that does not exist', done => {
+  chai.request(server)
+    .get('/sad')
+    .end((err, response) => {
+      response.should.have.status(404);
+      done();
+    });
+  });
 });
