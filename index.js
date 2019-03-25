@@ -5,6 +5,7 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const favorites = require('./lib/routes/api/v1/favorites')
+const playlists = require('./lib/routes/api/v1/playlists')
 
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment]
@@ -18,6 +19,7 @@ app.set('port', process.env.PORT || 3000);
 app.locals.title = 'Songs';
 
 app.use('/api/v1/favorites', favorites)
+app.use('/api/v1/playlists', playlists)
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`);
