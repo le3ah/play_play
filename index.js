@@ -23,21 +23,6 @@ app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`);
 });
 
-app.delete('/api/v1/favorites/:id', (request, response) => {
-  database('favorites').where({id: request.params.id }).del()
-  .then(favoriteId => {
-    if(favoriteId) {
-      response.status(204).json(favoriteId);
-    } else {
-      response.status(404).json({
-        error: `Unsuccessful deletion of favorite song with id ${request.params.id}.`
-      })
-    }
-  }).catch(error => {
-    response.status(500).json({ error })
-  })
-});
-
 module.exports = {
   app: app,
   database: database
