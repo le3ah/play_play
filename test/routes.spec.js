@@ -124,3 +124,42 @@ describe('DELETE /api/v1/favorites/:id', () => {
     })
   })
 });
+describe('Playlist GET Routes', () => {
+  before((done) => {
+    database.raw("TRUNCATE playlists_favorites restart identity;")
+    .then(() => database.raw("TRUNCATE playlists restart identity CASCADE;"))
+    .then(() => database.raw("TRUNCATE favorites restart identity CASCADE;"))
+    .then(() => done())
+    .catch(error => {
+      throw error;
+    });
+  });
+  before((done) => {
+     database.migrate.latest()
+       .then(() => done())
+       .catch(error => {
+         throw error;
+       });
+   });
+
+   beforeEach((done) => {
+     database.seed.run()
+       .then(() => done())
+       .catch(error => {
+         throw error;
+       });
+   });
+  it('should return all playlists', done => {
+    chai.request(server)
+    .get('/api/v1/playlists')
+    .end((err, response) => {
+      response.should.have.status(200);
+      response.should.be.json;
+      response.body.should.be.a('array');
+      response.body.length.should.equal(2);
+      response.body[0].should.have.property('id');
+      response.body[0].should.have.property('name');
+      done();
+    })
+  })
+});
