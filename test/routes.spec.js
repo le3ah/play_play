@@ -158,7 +158,12 @@ describe('Playlist GET Routes', () => {
       response.body.should.be.a('array');
       response.body.length.should.equal(2);
       response.body[0].should.have.property('id');
-      response.body[0].should.have.property('name');
+      response.body[0].should.have.property('playlist_name');
+      response.body[0].favorite[0].should.have.property('id')
+      response.body[0].favorite[0].should.have.property('name')
+      response.body[0].favorite[0].should.have.property('artist_name')
+      response.body[0].favorite[0].should.have.property('genre')
+      response.body[0].favorite[0].should.have.property('rating')
       done();
     })
   })
