@@ -1,11 +1,12 @@
 language: node_js
 node_js:
-- 11.8.0
+- "stable"
 services:
 - postgresql
 before_script:
 - psql -c 'create database songs;' -U postgres
 - knex migrate:latest
+- knex seed:run
 deploy:
   provider: heroku
   api_key:

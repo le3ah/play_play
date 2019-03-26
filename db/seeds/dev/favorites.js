@@ -25,7 +25,8 @@ exports.seed = function(knex, Promise) {
           .then((playlists) => {
             return knex('playlists_favorites').insert([
               { playlist_id: playlists[0], favorite_id: favorites[0]},
-              { playlist_id: playlists[1], favorite_id: favorites[0]}
+              { playlist_id: playlists[1], favorite_id: favorites[0]},
+              { playlist_id: playlists[1], favorite_id: favorites[1]}
             ])
           })
         })
