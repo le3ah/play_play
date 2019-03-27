@@ -37,23 +37,13 @@ We're no stranger to joins tables, but trying to display joins tables within Exp
 
 ![wireframe](/.readme/wireframe.png)
 
-Our code isn't halfbad either!
-```
-const all = () => database('playlists')
-  .join('playlists_favorites', {'playlists.id': 'playlists_favorites.playlist_id'})
-  .join('favorites', { 'favorites.id': 'playlists_favorites.favorite_id' })
-  .groupBy('playlists.id')
-  .select(['playlists.id as id', 'playlists.name as playlist_name',
-    database.raw('json_agg(favorites) as favorite')
-    ])
-    ```
 
 ## Getting Started && Prerequisites
 
 * To run our code, we installed Postgres and created our database within psql
 * First though, you should clone our code:
 ```
-git clone <https://github.com/mgoodhart5/play_play >
+git clone https://github.com/mgoodhart5/play_play
 ```
 
 ### Installing
@@ -110,7 +100,7 @@ npm start
 
 Once the server is running, visit in your browser:
 
-* `http://localhost:3000/` to run your application.
+* http://localhost:3000/ to run your application.
 
 
 ## Built With
