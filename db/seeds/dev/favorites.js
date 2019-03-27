@@ -15,6 +15,11 @@ exports.seed = function(knex, Promise) {
           artist_name: 'Residente',
           genre: 'Rap',
           rating: 100
+        }, {
+          name: 'Ruben and Cherise',
+          artist_name: 'Jerry Garcia',
+          genre: 'Esoteric',
+          rating: 100
         }
       ], 'id')
         .then((favorites) => {
@@ -25,6 +30,8 @@ exports.seed = function(knex, Promise) {
           .then((playlists) => {
             return knex('playlists_favorites').insert([
               { playlist_id: playlists[0], favorite_id: favorites[0]},
+              { playlist_id: playlists[0], favorite_id: favorites[1]},
+              { playlist_id: playlists[0], favorite_id: favorites[2]},
               { playlist_id: playlists[1], favorite_id: favorites[0]},
               { playlist_id: playlists[1], favorite_id: favorites[1]}
             ])
