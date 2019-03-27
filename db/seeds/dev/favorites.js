@@ -71,17 +71,17 @@ exports.seed = function(knex, Promise) {
               { playlist_id: playlists[0], favorite_id: favorites[2]},
               { playlist_id: playlists[1], favorite_id: favorites[0]},
               { playlist_id: playlists[1], favorite_id: favorites[1]},
-              { playlist_id: playlists[3], favorite_id: favorites[9]},
-              { playlist_id: playlists[3], favorite_id: favorites[8]},
-              { playlist_id: playlists[3], favorite_id: favorites[7]},
+              { playlist_id: playlists[2], favorite_id: favorites[9]},
+              { playlist_id: playlists[2], favorite_id: favorites[8]},
+              { playlist_id: playlists[2], favorite_id: favorites[7]},
+              { playlist_id: playlists[2], favorite_id: favorites[5]},
+              { playlist_id: playlists[3], favorite_id: favorites[0]},
+              { playlist_id: playlists[3], favorite_id: favorites[1]},
+              { playlist_id: playlists[3], favorite_id: favorites[2]},
+              { playlist_id: playlists[3], favorite_id: favorites[3]},
+              { playlist_id: playlists[3], favorite_id: favorites[4]},
               { playlist_id: playlists[3], favorite_id: favorites[5]},
-              { playlist_id: playlists[4], favorite_id: favorites[0]},
-              { playlist_id: playlists[4], favorite_id: favorites[1]},
-              { playlist_id: playlists[4], favorite_id: favorites[2]},
-              { playlist_id: playlists[4], favorite_id: favorites[3]},
-              { playlist_id: playlists[4], favorite_id: favorites[4]},
-              { playlist_id: playlists[4], favorite_id: favorites[5]},
-              { playlist_id: playlists[4], favorite_id: favorites[6]}
+              { playlist_id: playlists[3], favorite_id: favorites[6]}
             ])
           })
         })

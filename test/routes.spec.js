@@ -156,7 +156,7 @@ describe('Playlist GET Routes', () => {
       response.should.have.status(200);
       response.should.be.json;
       response.body.should.be.a('array');
-      response.body.length.should.equal(3);
+      response.body.length.should.equal(4);
       response.body[0].should.have.property('id');
       response.body[0].should.have.property('playlist_name');
       response.body[0].favorite[0].should.have.property('id')
